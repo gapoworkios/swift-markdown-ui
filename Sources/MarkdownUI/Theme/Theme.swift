@@ -460,6 +460,7 @@ extension Theme {
   }
 }
 
+@available(iOS 15.0, *)
 extension Theme {
   /// The text background color of the theme extracted from the ``Theme/text`` style.
   var textBackgroundColor: Color? {
