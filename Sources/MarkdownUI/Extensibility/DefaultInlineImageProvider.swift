@@ -2,6 +2,7 @@ import NetworkImage
 import SwiftUI
 
 /// The default inline image provider, which loads images from the network.
+@available(iOS 14.0, *)
 public struct DefaultInlineImageProvider: InlineImageProvider {
   public func image(with url: URL, label: String) async throws -> Image {
     try await Image(
@@ -12,6 +13,7 @@ public struct DefaultInlineImageProvider: InlineImageProvider {
   }
 }
 
+@available(iOS 14.0, *)
 extension InlineImageProvider where Self == DefaultInlineImageProvider {
   /// The default inline image provider, which loads images from the network.
   ///
