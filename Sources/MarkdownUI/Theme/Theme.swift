@@ -99,6 +99,7 @@ import SwiftUI
 ///   }
 ///   // More block styles...
 /// ```
+@available(iOS 15.0, *)
 public struct Theme {
   /// The text style.
   public var text: TextStyle = EmptyTextStyle()
