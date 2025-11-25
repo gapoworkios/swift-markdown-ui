@@ -1,6 +1,7 @@
 import Splash
 import SwiftUI
 
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 struct TextOutputFormat: OutputFormat {
   private let theme: Theme
 
@@ -13,6 +14,7 @@ struct TextOutputFormat: OutputFormat {
   }
 }
 
+@available(iOS 15.0, *)
 extension TextOutputFormat {
   struct Builder: OutputBuilder {
     private let theme: Theme

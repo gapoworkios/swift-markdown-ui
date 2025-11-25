@@ -4,6 +4,7 @@ import SwiftUI
 ///
 /// The theme ``Theme/bulletedListMarker`` and ``Theme/numberedListMarker``
 /// block styles receive a `ListMarkerConfiguration` input in their `body` closure.
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 public struct ListMarkerConfiguration {
   /// The list level (one-based) of the item to which the marker applies.
   public let listLevel: Int
@@ -12,6 +13,7 @@ public struct ListMarkerConfiguration {
   public let itemNumber: Int
 }
 
+@available(iOS 15.0, *)
 extension BlockStyle where Configuration == ListMarkerConfiguration {
   /// A list marker style that uses decimal numbers beginning with 1.
   public static var decimal: Self {
@@ -60,6 +62,7 @@ extension BlockStyle where Configuration == ListMarkerConfiguration {
 
 // MARK: Dynamic
 
+@available(iOS 15.0, *)
 extension BlockStyle where Configuration == ListMarkerConfiguration {
   /// A list marker style that uses decimal numbers beginning with 1.
   public static func decimal(minWidth: RelativeSize, alignment: Alignment = .center) -> Self {

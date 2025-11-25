@@ -1,6 +1,7 @@
 import MarkdownUI
 import SwiftUI
 
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 struct RepositoryReadmeView: View {
   private let about = """
     This screen demonstrates how **MarkdownUI** renders a GitHub repository's
@@ -38,6 +39,7 @@ struct RepositoryReadmeView: View {
   }
 }
 
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 struct RepositoryReadmeView_Previews: PreviewProvider {
   static var previews: some View {
     RepositoryReadmeView()
@@ -46,6 +48,7 @@ struct RepositoryReadmeView_Previews: PreviewProvider {
 
 // MARK: - ReadmeView
 
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 private struct ReadmeView: View {
   let owner: String
   let repo: String
@@ -122,6 +125,7 @@ private struct ReadmeView: View {
 
 // MARK: - Heading anchor scrolling
 
+@available(iOS 15.0, *)
 extension View {
   func scrollToMarkdownHeadings(using scrollViewProxy: ScrollViewProxy) -> some View {
     self.environment(
@@ -141,6 +145,7 @@ extension View {
 
 // MARK: - RepositoryReadmeClient
 
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 private struct RepositoryReadmeClient {
   struct Response: Codable {
     private enum CodingKeys: String, CodingKey {

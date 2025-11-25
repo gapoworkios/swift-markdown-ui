@@ -1,6 +1,7 @@
 import SwiftUI
 
 @available(iOS 15.0, *)
+@available(iOS 15.0, *)
 extension View {
   func readWidth(column: Int) -> some View {
     self.background(

@@ -26,6 +26,7 @@ public protocol ImageProvider {
   @ViewBuilder func makeImage(url: URL?) -> Body
 }
 
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 struct AnyImageProvider: ImageProvider {
   private let _makeImage: (URL?) -> AnyView
 

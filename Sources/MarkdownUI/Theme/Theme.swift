@@ -201,6 +201,7 @@ public struct Theme {
 }
 
 @available(iOS 15.0, *)
+@available(iOS 15.0, *)
 extension Theme {
   /// Adds a default text style to the theme.
   /// - Parameter text: A text style builder that returns the default text style.
@@ -251,6 +252,7 @@ extension Theme {
   }
 }
 
+@available(iOS 15.0, *)
 @available(iOS 15.0, *)
 extension Theme {
   /// Adds a level 1 heading style to the theme.
@@ -460,6 +462,7 @@ extension Theme {
   }
 }
 
+@available(iOS 15.0, *)
 @available(iOS 15.0, *)
 extension Theme {
   /// The text background color of the theme extracted from the ``Theme/text`` style.

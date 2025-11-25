@@ -13,6 +13,7 @@ enum BlockNode: Hashable {
   case thematicBreak
 }
 
+@available(iOS 15.0, *)
 extension BlockNode {
   var children: [BlockNode] {
     switch self {
@@ -35,10 +36,12 @@ extension BlockNode {
   }
 }
 
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 struct RawListItem: Hashable {
   let children: [BlockNode]
 }
 
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 struct RawTaskListItem: Hashable {
   let isCompleted: Bool
   let children: [BlockNode]
@@ -51,10 +54,12 @@ enum RawTableColumnAlignment: Character {
   case right = "r"
 }
 
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 struct RawTableRow: Hashable {
   let cells: [RawTableCell]
 }
 
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 struct RawTableCell: Hashable {
   let content: [InlineNode]
 }

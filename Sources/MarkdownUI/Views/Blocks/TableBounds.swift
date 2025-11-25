@@ -72,6 +72,7 @@ struct TableBounds {
 }
 
 @available(iOS 15.0, *)
+@available(iOS 15.0, *)
 extension View {
   func tableCellBounds(forRow row: Int, column: Int) -> some View {
     self.anchorPreference(key: TableCellBoundsPreference.self, value: .bounds) { anchor in
@@ -113,11 +114,13 @@ extension View {
   }
 }
 
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 private struct TableCellIndex: Hashable {
   var row: Int
   var column: Int
 }
 
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 private struct TableCellBoundsPreference: PreferenceKey {
   static let defaultValue: [TableCellIndex: Anchor<CGRect>] = [:]
 

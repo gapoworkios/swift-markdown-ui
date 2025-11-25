@@ -1,6 +1,7 @@
 import MarkdownUI
 import SwiftUI
 
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 struct LazyLoadingView: View {
   struct Item: Identifiable {
     let id = UUID()
@@ -58,12 +59,14 @@ struct LazyLoadingView: View {
   }
 }
 
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 struct LazyLoadingView_Previews: PreviewProvider {
   static var previews: some View {
     LazyLoadingView()
   }
 }
 
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 struct LazyImageProvider: ImageProvider {
   let aspectRatio: CGFloat
 
@@ -82,12 +85,14 @@ struct LazyImageProvider: ImageProvider {
   }
 }
 
+@available(iOS 15.0, *)
 extension ImageProvider where Self == LazyImageProvider {
   static func lazyImage(aspectRatio: CGFloat) -> Self {
     LazyImageProvider(aspectRatio: aspectRatio)
   }
 }
 
+@available(iOS 15.0, *)
 extension URL {
   static func randomImage() -> URL {
     let id: String = [

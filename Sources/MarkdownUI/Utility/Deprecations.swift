@@ -3,6 +3,7 @@ import SwiftUI
 // MARK: - Deprecated after 2.1.0:
 
 @available(iOS 15.0, *)
+@available(iOS 15.0, *)
 extension DefaultImageProvider {
   @available(*, deprecated, message: "Use the 'default' static property")
   public init(urlSession: URLSession = .shared) {
@@ -10,6 +11,7 @@ extension DefaultImageProvider {
   }
 }
 
+@available(iOS 15.0, *)
 @available(iOS 15.0, *)
 extension DefaultInlineImageProvider {
   @available(*, deprecated, message: "Use the 'default' static property")
@@ -19,6 +21,7 @@ extension DefaultInlineImageProvider {
 }
 
 // MARK: - Deprecated after 2.0.2:
+@available(iOS 15.0, *)
 @available(iOS 15.0, *)
 extension BlockStyle where Configuration == BlockConfiguration {
   @available(
@@ -44,6 +47,7 @@ extension BlockStyle where Configuration == BlockConfiguration {
   }
 }
 
+@available(iOS 15.0, *)
 @available(iOS 15.0, *)
 extension View {
   @available(
@@ -82,6 +86,7 @@ extension View {
   }
 }
 
+@available(iOS 15.0, *)
 @available(iOS 15.0, *)
 extension Theme {
   @available(
@@ -298,6 +303,7 @@ extension Theme {
 // MARK: - Unavailable after 1.1.1:
 
 @available(iOS 15.0, *)
+@available(iOS 15.0, *)
 extension Heading {
   @available(*, unavailable, message: "Use 'init(_ level:content:)'")
   public init(level: Int, @InlineContentBuilder content: () -> InlineContent) {
@@ -340,6 +346,7 @@ public struct MarkdownImageHandler {
 }
 
 @available(iOS 15.0, *)
+@available(iOS 15.0, *)
 extension Markdown {
   @available(
     *,
@@ -357,6 +364,7 @@ extension Markdown {
   }
 }
 
+@available(iOS 15.0, *)
 @available(iOS 15.0, *)
 extension View {
   @available(
@@ -488,6 +496,7 @@ public struct MarkdownStyle: Hashable {
   }
 }
 
+@available(iOS 15.0, *)
 @available(iOS 15.0, *)
 extension View {
   @available(

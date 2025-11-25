@@ -50,6 +50,7 @@ struct ImageView: View {
 }
 
 @available(iOS 15.0, *)
+@available(iOS 15.0, *)
 extension ImageView {
   init?(_ inlines: [InlineNode]) {
     guard inlines.count == 1, let data = inlines.first?.imageData else {
@@ -59,6 +60,7 @@ extension ImageView {
   }
 }
 
+@available(iOS 15.0, *)
 @available(iOS 15.0, *)
 extension View {
   fileprivate func link(destination: String?) -> some View {

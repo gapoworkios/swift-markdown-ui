@@ -2,6 +2,7 @@ import MarkdownUI
 import Splash
 import SwiftUI
 
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 struct CodeSyntaxHighlightView: View {
   @Environment(\.colorScheme) private var colorScheme
 
@@ -34,7 +35,8 @@ struct CodeSyntaxHighlightView: View {
       }
     }
 
-    extension CodeSyntaxHighlighter where Self == SplashCodeSyntaxHighlighter {
+    @available(iOS 15.0, *)
+extension CodeSyntaxHighlighter where Self == SplashCodeSyntaxHighlighter {
       static func splash(theme: Splash.Theme) -> Self {
         SplashCodeSyntaxHighlighter(theme: theme)
       }
@@ -158,6 +160,7 @@ struct CodeSyntaxHighlightView: View {
   }
 }
 
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 struct CodeSyntaxHighlightView_Previews: PreviewProvider {
   static var previews: some View {
     CodeSyntaxHighlightView()

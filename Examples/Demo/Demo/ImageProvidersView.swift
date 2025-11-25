@@ -2,6 +2,7 @@ import MarkdownUI
 import SDWebImageSwiftUI
 import SwiftUI
 
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 struct ImageProvidersView: View {
   private let content = """
     You can tell a `Markdown` view to load images using a 3rd party library
@@ -47,6 +48,7 @@ struct ImageProvidersView: View {
   }
 }
 
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 struct ImageProvidersView_Previews: PreviewProvider {
   static var previews: some View {
     ImageProvidersView()
@@ -55,6 +57,7 @@ struct ImageProvidersView_Previews: PreviewProvider {
 
 // MARK: - WebImageProvider
 
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 struct WebImageProvider: ImageProvider {
   func makeImage(url: URL?) -> some View {
     ResizeToFit {
@@ -64,6 +67,7 @@ struct WebImageProvider: ImageProvider {
   }
 }
 
+@available(iOS 15.0, *)
 extension ImageProvider where Self == WebImageProvider {
   static var webImage: Self {
     .init()
@@ -73,6 +77,7 @@ extension ImageProvider where Self == WebImageProvider {
 // MARK: - ResizeToFit
 
 /// A layout that resizes its content to fit the container **only** if the content width is greater than the container width.
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 struct ResizeToFit: Layout {
   func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
     guard let view = subviews.first else {

@@ -217,6 +217,7 @@ a theme, start by instantiating an empty `Theme` and chain together the differen
 styles in a single expression.
 
 ```swift
+@available(iOS 15.0, *)
 extension Theme {
   static let fancy = Theme()
     .code {

@@ -1,6 +1,7 @@
 import MarkdownUI
 import SwiftUI
 
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 struct ThemeOption: Hashable {
   let name: String
   let theme: Theme
@@ -18,6 +19,7 @@ struct ThemeOption: Hashable {
   static let gitHub = ThemeOption(name: "GitHub", theme: .gitHub)
 }
 
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 struct DemoView<Content: View>: View {
   private let themeOptions: [ThemeOption]
   private let about: MarkdownContent?
@@ -87,6 +89,7 @@ struct DemoView<Content: View>: View {
   }
 }
 
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 struct DemoView_Previews: PreviewProvider {
   static var previews: some View {
     DemoView {

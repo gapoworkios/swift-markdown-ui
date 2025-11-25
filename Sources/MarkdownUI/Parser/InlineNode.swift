@@ -13,6 +13,7 @@ enum InlineNode: Hashable, Sendable {
   case image(source: String, children: [InlineNode])
 }
 
+@available(iOS 15.0, *)
 extension InlineNode {
   var children: [InlineNode] {
     get {

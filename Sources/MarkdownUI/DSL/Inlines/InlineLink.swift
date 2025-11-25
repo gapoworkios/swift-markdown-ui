@@ -28,6 +28,7 @@ import Foundation
 ///   }
 /// }
 /// ```
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 public struct InlineLink: InlineContentProtocol {
   public var _inlineContent: InlineContent {
     .init(inlines: [.link(destination: self.destination, children: self.content.inlines)])

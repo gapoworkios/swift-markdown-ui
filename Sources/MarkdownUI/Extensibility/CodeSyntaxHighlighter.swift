@@ -13,6 +13,7 @@ public protocol CodeSyntaxHighlighter {
 }
 
 /// A code syntax highlighter that returns unstyled code blocks.
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 public struct PlainTextCodeSyntaxHighlighter: CodeSyntaxHighlighter {
   /// Creates a plain text code syntax highlighter.
   public init() {}
@@ -22,6 +23,7 @@ public struct PlainTextCodeSyntaxHighlighter: CodeSyntaxHighlighter {
   }
 }
 
+@available(iOS 15.0, *)
 extension CodeSyntaxHighlighter where Self == PlainTextCodeSyntaxHighlighter {
   /// A code syntax highlighter that returns unstyled code blocks.
   public static var plainText: Self {
