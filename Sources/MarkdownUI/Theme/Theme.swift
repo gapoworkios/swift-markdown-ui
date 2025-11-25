@@ -251,6 +251,7 @@ extension Theme {
   }
 }
 
+@available(iOS 15.0, *)
 extension Theme {
   /// Adds a level 1 heading style to the theme.
   /// - Parameter body: A view builder that returns a customized level 1 heading.
