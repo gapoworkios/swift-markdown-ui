@@ -10,6 +10,7 @@ extension AttributeScopes {
     MarkdownUIAttributes.self
   }
 
+  @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
   struct MarkdownUIAttributes: AttributeScope {
     let swiftUI: SwiftUIAttributes
     let fontProperties: FontPropertiesAttribute
@@ -25,6 +26,7 @@ extension AttributeDynamicLookup {
   }
 }
 
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 extension AttributedString {
   func resolvingFonts() -> AttributedString {
     var output = self
