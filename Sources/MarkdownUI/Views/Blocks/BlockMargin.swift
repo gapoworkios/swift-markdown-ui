@@ -101,6 +101,7 @@ extension View {
   }
 }
 
+@available(iOS 15.0, *)
 struct BlockMarginsPreference: PreferenceKey {
   static let defaultValue: BlockMargin = .unspecified
 
