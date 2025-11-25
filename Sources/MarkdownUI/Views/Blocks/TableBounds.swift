@@ -71,6 +71,7 @@ struct TableBounds {
   }
 }
 
+@available(iOS 15.0, *)
 extension View {
   func tableCellBounds(forRow row: Int, column: Int) -> some View {
     self.anchorPreference(key: TableCellBoundsPreference.self, value: .bounds) { anchor in
