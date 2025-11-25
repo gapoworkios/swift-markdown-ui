@@ -1,6 +1,7 @@
 import Foundation
 
 /// A result builder you can use to compose text styles.
+@available(iOS 15.0, *)
 @resultBuilder public enum TextStyleBuilder {
   public static func buildBlock() -> some TextStyle {
     EmptyTextStyle()
@@ -43,7 +44,6 @@ import Foundation
     Pair(accumulated, next)
   }
 
-  @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
   public enum _Conditional<First: TextStyle, Second: TextStyle>: TextStyle {
     case first(First)
     case second(Second)
@@ -58,7 +58,6 @@ import Foundation
     }
   }
 
-  @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
   private struct Pair<S0: TextStyle, S1: TextStyle>: TextStyle {
     let s0: S0
     let s1: S1

@@ -5,6 +5,7 @@ enum FontPropertiesAttribute: AttributedStringKey {
   static let name = "fontProperties"
 }
 
+@available(iOS 15.0, *)
 extension AttributeScopes {
   var markdownUI: MarkdownUIAttributes.Type {
     MarkdownUIAttributes.self

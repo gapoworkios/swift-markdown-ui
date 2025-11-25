@@ -1,5 +1,6 @@
 import SwiftUI
 
+@available(iOS 15.0, *)
 extension Theme {
   /// A theme that mimics the GitHub style.
   ///

@@ -1,5 +1,6 @@
 import Foundation
 
+@available(iOS 15.0, *)
 extension InlineNode {
   func renderAttributedString(
     baseURL: URL?,
@@ -18,6 +19,7 @@ extension InlineNode {
   }
 }
 
+@available(iOS 15.0, *)
 private struct AttributedStringInlineRenderer {
   var result = AttributedString()
 
