@@ -200,6 +200,7 @@ public struct Theme {
   public init() {}
 }
 
+@available(iOS 15.0, *)
 extension Theme {
   /// Adds a default text style to the theme.
   /// - Parameter text: A text style builder that returns the default text style.
