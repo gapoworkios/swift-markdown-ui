@@ -1,7 +1,7 @@
 import MarkdownUI
 import SwiftUI
 
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+@available(iOS 15.0, *)
 struct ImagesView: View {
   private let content = """
     You can display an image by adding `!` and wrapping the alt text in `[ ]`.
@@ -54,7 +54,7 @@ struct ImagesView: View {
   }
 }
 
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+@available(iOS 15.0, *)
 struct ImagesView_Previews: PreviewProvider {
   static var previews: some View {
     ImagesView()

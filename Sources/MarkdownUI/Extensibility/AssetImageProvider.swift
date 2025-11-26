@@ -12,7 +12,7 @@ import SwiftUI
 /// }
 /// .markdownImageProvider(.asset)
 /// ```
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+@available(iOS 15.0, *)
 public struct AssetImageProvider: ImageProvider {
   private let name: (URL) -> String
   private let bundle: Bundle?

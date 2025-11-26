@@ -1,7 +1,7 @@
 import MarkdownUI
 import SwiftUI
 
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+@available(iOS 15.0, *)
 struct ListsView: View {
   private let content = """
     You can make an unordered list by preceding one or more lines of text with `-`, `*`, or `+`.
@@ -92,7 +92,7 @@ struct ListsView: View {
   }
 }
 
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+@available(iOS 15.0, *)
 struct ListView_Previews: PreviewProvider {
   static var previews: some View {
     ListsView()

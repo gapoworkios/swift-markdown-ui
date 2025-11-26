@@ -1,26 +1,24 @@
 import Foundation
 
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+@available(iOS 15.0, *)
 enum FontPropertiesAttribute: AttributedStringKey {
   typealias Value = FontProperties
   static let name = "fontProperties"
 }
 
 @available(iOS 15.0, *)
-@available(iOS 15.0, *)
 extension AttributeScopes {
   var markdownUI: MarkdownUIAttributes.Type {
     MarkdownUIAttributes.self
   }
 
-  @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+  @available(iOS 15.0, *)
   struct MarkdownUIAttributes: AttributeScope {
     let swiftUI: SwiftUIAttributes
     let fontProperties: FontPropertiesAttribute
   }
 }
 
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 @available(iOS 15.0, *)
 extension AttributeDynamicLookup {
   subscript<T: AttributedStringKey>(
@@ -30,7 +28,6 @@ extension AttributeDynamicLookup {
   }
 }
 
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 @available(iOS 15.0, *)
 extension AttributedString {
   func resolvingFonts() -> AttributedString {

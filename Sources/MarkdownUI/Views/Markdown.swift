@@ -227,7 +227,6 @@ public struct Markdown: View {
   }
 }
 @available(iOS 15.0, *)
-@available(iOS 15.0, *)
 extension Markdown {
   /// Creates a Markdown view from a Markdown-formatted string.
   /// - Parameters:

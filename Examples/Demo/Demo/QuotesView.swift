@@ -1,7 +1,7 @@
 import MarkdownUI
 import SwiftUI
 
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+@available(iOS 15.0, *)
 struct QuotesView: View {
   let content = """
     You can quote text with a `>`.
@@ -38,7 +38,7 @@ struct QuotesView: View {
   }
 }
 
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+@available(iOS 15.0, *)
 struct BlockquotesView_Previews: PreviewProvider {
   static var previews: some View {
     QuotesView()

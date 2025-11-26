@@ -52,14 +52,12 @@ where
 }
 
 @available(iOS 15.0, *)
-@available(iOS 15.0, *)
 extension BlockSequence where Data == [BlockNode], Content == BlockNode {
   init(_ blocks: [BlockNode]) {
     self.init(blocks) { $1 }
   }
 }
 
-@available(iOS 15.0, *)
 @available(iOS 15.0, *)
 extension TextAlignment {
   fileprivate var alignment: Alignment {

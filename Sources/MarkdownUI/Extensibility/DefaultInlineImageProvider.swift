@@ -14,7 +14,6 @@ public struct DefaultInlineImageProvider: InlineImageProvider {
 }
 
 @available(iOS 15.0, *)
-@available(iOS 15.0, *)
 extension InlineImageProvider where Self == DefaultInlineImageProvider {
   /// The default inline image provider, which loads images from the network.
   ///

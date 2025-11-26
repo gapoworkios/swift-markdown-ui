@@ -57,7 +57,7 @@ import Foundation
 /// ```
 ///
 /// ![](Table-Static)
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+@available(iOS 15.0, *)
 public struct TextTable: MarkdownContentProtocol {
   public var _markdownContent: MarkdownContent {
     .init(blocks: [.table(columnAlignments: self.columnAlignments, rows: self.rows)])

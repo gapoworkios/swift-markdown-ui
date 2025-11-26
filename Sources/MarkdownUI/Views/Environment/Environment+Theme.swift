@@ -1,7 +1,6 @@
 import SwiftUI
 
 @available(iOS 15.0, *)
-@available(iOS 15.0, *)
 extension View {
   /// Sets the current ``Theme`` for the Markdown contents in a view hierarchy.
   /// - Parameter theme: The theme to set.
@@ -64,7 +63,6 @@ extension View {
   }
 }
 
-@available(iOS 15.0, *)
 @available(iOS 15.0, *)
 extension EnvironmentValues {
   var theme: Theme {

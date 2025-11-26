@@ -59,7 +59,7 @@ extension VerticalAlignment {
   static let centerOfFirstLine = Self(CenterOfFirstLine.self)
 }
 
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+@available(iOS 15.0, *)
 struct BulletItemStyle: LabelStyle {
   func makeBody(configuration: Configuration) -> some View {
     HStack(alignment: .centerOfFirstLine, spacing: 4) {

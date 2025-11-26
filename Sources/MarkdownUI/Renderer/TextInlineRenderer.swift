@@ -1,7 +1,6 @@
 import SwiftUI
 
 @available(iOS 15.0, *)
-@available(iOS 15.0, *)
 extension Sequence where Element == InlineNode {
   func renderText(
     baseURL: URL?,

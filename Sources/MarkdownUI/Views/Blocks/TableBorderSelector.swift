@@ -9,7 +9,6 @@ public struct TableBorderSelector {
 }
 
 @available(iOS 15.0, *)
-@available(iOS 15.0, *)
 extension TableBorderSelector {
   /// A table border selector that selects the outside borders of a table.
   public static var outsideBorders: TableBorderSelector {
@@ -77,7 +76,6 @@ extension TableBorderSelector {
   }
 }
 
-@available(iOS 15.0, *)
 @available(iOS 15.0, *)
 extension TableBorderSelector {
   fileprivate static var outsideHorizontalBorders: TableBorderSelector {

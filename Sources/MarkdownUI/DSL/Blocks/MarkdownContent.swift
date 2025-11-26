@@ -1,7 +1,7 @@
 import Foundation
 
 /// A protocol that represents any Markdown content.
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+@available(iOS 15.0, *)
 public protocol MarkdownContentProtocol {
   var _markdownContent: MarkdownContent { get }
 }
@@ -60,7 +60,7 @@ public protocol MarkdownContentProtocol {
 ///   }
 /// }
 /// ```
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+@available(iOS 15.0, *)
 public struct MarkdownContent: Equatable, MarkdownContentProtocol {
   /// Returns a Markdown content value with the sum of the contents of all the container blocks
   /// present in this content.

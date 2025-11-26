@@ -2,7 +2,7 @@ import MarkdownUI
 import Splash
 import SwiftUI
 
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+@available(iOS 15.0, *)
 struct SplashCodeSyntaxHighlighter: CodeSyntaxHighlighter {
   private let syntaxHighlighter: SyntaxHighlighter<TextOutputFormat>
 

@@ -430,7 +430,7 @@ extension UnsafeNode {
   }
 }
 
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+@available(iOS 15.0, *)
 private enum NodeType: String {
   case document
   case blockquote = "block_quote"
@@ -466,7 +466,7 @@ private enum NodeType: String {
   case taskListItem = "tasklist"
 }
 
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+@available(iOS 15.0, *)
 private struct UnsafeNodeSequence: Sequence {
   struct Iterator: IteratorProtocol {
     private var node: UnsafeNode?
@@ -495,7 +495,7 @@ private struct UnsafeNodeSequence: Sequence {
 
 // extension node types are not exported in `cmark_gfm_extensions`,
 // so we need to look for them in the symbol table
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+@available(iOS 15.0, *)
 private struct ExtensionNodeTypes {
   let CMARK_NODE_TABLE: cmark_node_type
   let CMARK_NODE_TABLE_ROW: cmark_node_type

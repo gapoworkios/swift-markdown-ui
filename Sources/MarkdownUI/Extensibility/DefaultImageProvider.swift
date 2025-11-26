@@ -20,7 +20,6 @@ public struct DefaultImageProvider: ImageProvider {
 }
 
 @available(iOS 15.0, *)
-@available(iOS 15.0, *)
 extension ImageProvider where Self == DefaultImageProvider {
   /// The default image provider, which loads images from the network.
   ///

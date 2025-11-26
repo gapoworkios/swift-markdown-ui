@@ -4,7 +4,7 @@ import SwiftUI
 ///
 /// The theme ``Theme/taskListMarker`` block style receives a `TaskListMarkerConfiguration`
 /// input in its `body` closure.
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+@available(iOS 15.0, *)
 public struct TaskListMarkerConfiguration {
   /// Determines whether the item to which the marker applies is completed or not.
   public let isCompleted: Bool

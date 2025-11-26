@@ -1,7 +1,6 @@
 import Foundation
 
 @available(iOS 15.0, *)
-@available(iOS 15.0, *)
 extension InlineNode {
   func renderAttributedString(
     baseURL: URL?,
@@ -159,7 +158,6 @@ private struct AttributedStringInlineRenderer {
   }
 }
 
-@available(iOS 15.0, *)
 @available(iOS 15.0, *)
 extension TextStyle {
   fileprivate func mergingAttributes(_ attributes: AttributeContainer) -> AttributeContainer {
