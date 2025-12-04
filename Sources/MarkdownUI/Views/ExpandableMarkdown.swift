@@ -12,17 +12,17 @@ public struct ExpandableMarkdown: View {
     private let lineLimit: Int
     private let seeMoreText: String
     private let seeLessText: String
-    private let onExpandChange: (() -> Void)?
+    private let onExpandChange: ((Double) -> Void)?
     
     @State public var expanded = false
     @State public var collapsedHeight: CGFloat = 0
     
     public init(
         _ content: MarkdownContent,
-        lineLimit: Int = 3,
+        lineLimit: Int = 5,
         seeMoreText: String = "...See more",
         seeLessText: String = "See less",
-        onExpandChange: (() -> Void)? = nil
+        onExpandChange: ((Double) -> Void)? = nil
     ) {
         self.content = content
         self.lineLimit = max(1, lineLimit)
@@ -33,10 +33,10 @@ public struct ExpandableMarkdown: View {
     
     public init(
         _ markdown: String,
-        lineLimit: Int = 3,
+        lineLimit: Int = 5,
         seeMoreText: String = "...See more",
         seeLessText: String = "See less",
-        onExpandChange: (() -> Void)? = nil
+        onExpandChange: ((Double) -> Void)? = nil
     ) {
         self.init(
             MarkdownContent(markdown),
@@ -51,9 +51,9 @@ public struct ExpandableMarkdown: View {
         VStack(alignment: .leading, spacing: 8) {
             ExpandableBlockSequence(self.blocks)
                 .environment(\.markdownMaxLines, expanded ? nil : self.lineLimit)
+            
             Button(action: {
                 expanded.toggle()
-                onExpandChange?()
             }) {
                 Text(expanded ? seeLessText : seeMoreText)
                     .textStyle(self.theme.link)
@@ -65,6 +65,17 @@ public struct ExpandableMarkdown: View {
         .fixedSize(horizontal: false, vertical: true)
         .frame(maxWidth: .infinity, alignment: .topLeading)
         .animation(nil, value: expanded)
+        .background(heightReader)
+    }
+    
+    private var heightReader: some View {
+        GeometryReader { proxy in
+            let h = proxy.size.height
+            Color.clear
+                .onChange(of: h) { newVal in
+                    onExpandChange?(newVal)
+                }
+        }
     }
     
     private var blocks: [BlockNode] {

@@ -30,47 +30,54 @@ final class ExpandableBlockSequenceViewModel: ObservableObject {
         
         print("📊 applyMeasuredLines - merged: \(merged), ready: \(isMeasuredReady)")
         
-        if !isMeasuredReady && merged.count >= totalBlocks { 
-            isMeasuredReady = true 
+        if !isMeasuredReady && merged.count >= totalBlocks {
+            isMeasuredReady = true
             print("✅ Measurement ready! Total blocks: \(totalBlocks)")
         }
     }
     
-    // Sum of measured lines before a given block
-    func consumedBefore(_ index: Int) -> Int {
-        var total = 0
-        for i in 0..<index { total += blockLines[i] ?? 0 }
-        return total
-    }
-    
-    // Determine desired line limit for a specific block so only the boundary is truncated
-    func lineLimitForBlock(index: Int, maxLines: Int?, isExpanded: Bool) -> Int? {
-        guard let maxLines, !isExpanded else { return nil }  // unlimited
-        let consumed = consumedBefore(index)
-        guard consumed < maxLines else { return 0 }  // do not render
-        let natural = blockLines[index] ?? 1  // default to 1
-        if consumed + natural <= maxLines { return nil }  // full block, no truncation
-        let remaining = maxLines - consumed
-        return max(1, remaining)  // ensure at least 1 line, prevent overflow
-    }
-    
-    // Compute visible block indices based on truncation logic
-    func visibleBlockIndices(totalBlockCount: Int, maxLines: Int?, isExpanded: Bool) -> [Int] {
-        print("🔍 visibleBlockIndices - totalBlockCount: \(totalBlockCount), maxLines: \(String(describing: maxLines)), isExpanded: \(isExpanded)")
+    // Compute visible block indices along with their applicable line limits
+    func visibleBlocks(totalBlockCount: Int, maxLines: Int?, isExpanded: Bool) -> [(index: Int, limit: Int?)] {
+        print("🔍 visibleBlocks - totalBlockCount: \(totalBlockCount), maxLines: \(String(describing: maxLines)), isExpanded: \(isExpanded)")
         
         if isExpanded || maxLines == nil {
-            let result = Array(0..<totalBlockCount)
-            print("🔍 visibleBlockIndices - returning all: \(result)")
+            let result: [(index: Int, limit: Int?)] = (0..<totalBlockCount).map { (idx) -> (index: Int, limit: Int?) in
+                (index: idx, limit: nil)
+            }
+            print("🔍 visibleBlocks - returning all: \(result.map { $0.index })")
             return result
         }
-        var result: [Int] = []
+        guard let maxLines else { return [] }
+        var remaining = maxLines
+        var result: [(index: Int, limit: Int?)] = []
         for idx in 0..<totalBlockCount {
-            let limit = lineLimitForBlock(index: idx, maxLines: maxLines, isExpanded: isExpanded)
+            var limit: Int?
+            if let measured = blockLines[idx] {
+                if measured <= remaining {
+                    limit = nil
+                    remaining -= measured
+                } else if remaining > 0 {
+                    limit = remaining
+                    remaining = 0
+                } else {
+                    limit = 0
+                }
+            } else {
+                if remaining > 0 {
+                    limit = remaining
+                    remaining = 0
+                } else {
+                    limit = 0
+                }
+            }
             if limit != 0 {
-                result.append(idx)
+                result.append((idx, limit))
+            }
+            if remaining <= 0 {
+                break
             }
         }
-        print("🔍 visibleBlockIndices - filtered result: \(result)")
+        print("🔍 visibleBlocks - result: \(result.map { $0.index })")
         return result
     }
 }
@@ -94,25 +101,20 @@ struct ExpandableBlockSequence: View {
     var body: some View {
         // Visible content: collapsed or expanded using measured/cached line counts
         VStack(alignment: .leading, spacing: 8) {
-            if viewModel.isMeasuredReady {
-                let visibleIndices = viewModel.visibleBlockIndices(
-                    totalBlockCount: blocks.count,
-                    maxLines: maxLines,
-                    isExpanded: isExpanded
-                )
-                
-                ForEach(visibleIndices, id: \.self) { idx in
-                    let element = blocks[idx]
-                    let limit = viewModel.lineLimitForBlock(index: idx, maxLines: maxLines, isExpanded: isExpanded)
-                    if limit != 0 {
-                        element.value
-                            .environment(\.markdownBlockIndex, idx)
-                            .environment(\.markdownRemainingLines, limit == nil ? 1000 : limit!)
-                    }
-                }
+            let visibleBlocks = viewModel.visibleBlocks(
+                totalBlockCount: blocks.count,
+                maxLines: maxLines,
+                isExpanded: isExpanded
+            )
+            
+            ForEach(visibleBlocks, id: \.index) { block in
+                let element = blocks[block.index]
+                let remainingLines = block.limit ?? Int.max
+                element.value
+                    .environment(\.markdownBlockIndex, block.index)
+                    .environment(\.markdownRemainingLines, remainingLines)
             }
         }
-        .fixedSize(horizontal: false, vertical: true)
         // Start measurement immediately on appear without affecting layout
         .background(
             Group {
@@ -131,7 +133,9 @@ struct ExpandableBlockSequence: View {
             }
         )
         .onPreferenceChange(BlockLinesPreferenceKey.self) { values in
-            viewModel.applyMeasuredLines(values)
+            DispatchQueue.main.async {
+                viewModel.applyMeasuredLines(values)
+            }
         }
     }
 }

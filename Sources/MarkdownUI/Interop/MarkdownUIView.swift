@@ -23,10 +23,10 @@ public final class MarkdownUIView: UIView {
             view = AnyView(
                 ExpandableMarkdown(
                     markdown, lineLimit: lineLimit,
-                    onExpandChange: { [weak self] in
+                    onExpandChange: { [weak self] newHeight in
                         guard let self else { return }
                         self.hosting.view.layoutIfNeeded()
-                        self.updateHeight(getHostingViewPrefersize().height)
+                        self.updateHeight(newHeight)
                     }
                 )
                 .markdownTheme(theme)
@@ -52,7 +52,7 @@ public final class MarkdownUIView: UIView {
             child.leadingAnchor.constraint(equalTo: leadingAnchor),
             child.trailingAnchor.constraint(equalTo: trailingAnchor),
             child.topAnchor.constraint(equalTo: topAnchor),
-            child.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor),
+            child.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
         
         // Set content hugging to high so it doesn't stretch
@@ -60,7 +60,7 @@ public final class MarkdownUIView: UIView {
         child.setContentCompressionResistancePriority(.required, for: .vertical)
         
         // Initial height from intrinsic content
-        let h = getHostingViewPrefersize().height
+        let h = sizeThatFitsWidth(self.bounds.width > 0 ? self.bounds.width : UIScreen.main.bounds.width).height
         if h > 0 { updateHeight(h) }
     }
     
@@ -93,16 +93,30 @@ public final class MarkdownUIView: UIView {
         return CGSize(width: UIView.noIntrinsicMetric, height: currentHeight)
     }
     
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        let width = self.bounds.width > 0 ? self.bounds.width : UIScreen.main.bounds.width
+        let h = sizeThatFitsWidth(width).height
+        if h > 0 { updateHeight(h) }
+    }
+    
     /// Calculates height for a given constrained width using Auto Layout fitting.
     public func sizeThatFitsWidth(_ width: CGFloat) -> CGSize {
         let maxHeight: CGFloat = 2000
         let targetSize = CGSize(width: width, height: maxHeight)
-        // Ask hosting view to provide its fitting size
-        let measured = hosting.view.systemLayoutSizeFitting(
-            targetSize,
-            withHorizontalFittingPriority: .required,
-            verticalFittingPriority: .fittingSizeLevel
-        )
+        hosting.view.bounds.size = targetSize
+        hosting.view.setNeedsLayout()
+        hosting.view.layoutIfNeeded()
+        let measured: CGSize
+        if #available(iOS 16.0, *) {
+            measured = hosting.sizeThatFits(in: targetSize)
+        } else {
+            measured = hosting.view.systemLayoutSizeFitting(
+                targetSize,
+                withHorizontalFittingPriority: .required,
+                verticalFittingPriority: .fittingSizeLevel
+            )
+        }
         let h = measured.height > 0 ? measured.height : currentHeight
         return CGSize(width: width, height: ceil(h))
     }

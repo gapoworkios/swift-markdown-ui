@@ -51,45 +51,6 @@ class FacebookPostNode: ASCellNode {
     self.automaticallyManagesSubnodes = true
     self.backgroundColor = .systemBackground
 
-    // Wire up size change callback to relayout cell
-    self.markdownNode.onSizeChange = { [weak self] in
-      guard let self = self else { return }
-
-      print("🔄 FacebookPostNode: markdownNode size changed")
-
-      // Invalidate our calculated size
-      self.invalidateCalculatedLayout()
-
-      // Find the closest table node and trigger relayout
-      DispatchQueue.main.async {
-        // Try to find the ASTableNode
-        var currentNode: ASDisplayNode? = self
-        while let node = currentNode {
-          if let tableNode = node as? ASTableNode {
-            print("📱 Found ASTableNode, triggering beginUpdates/endUpdates")
-            tableNode.view.beginUpdates()
-            tableNode.view.endUpdates()
-            return
-          }
-          currentNode = node.supernode
-        }
-
-        // Fallback: find UITableView
-        var currentView: UIView? = self.view
-        while let view = currentView {
-          if let tableView = view as? UITableView {
-            print("📱 Found UITableView, triggering beginUpdates/endUpdates")
-            tableView.beginUpdates()
-            tableView.endUpdates()
-            return
-          }
-          currentView = view.superview
-        }
-
-        print("⚠️ Could not find table view to update")
-      }
-    }
-
     setupNodes()
   }
 
@@ -163,7 +124,7 @@ class FacebookPostNode: ASCellNode {
 
     // Content (markdown)
     let contentInset = ASInsetLayoutSpec(
-      insets: UIEdgeInsets(top: 0, left: 12, bottom: 8, right: 12),
+        insets: .init(top: 16, left: 16, bottom: 16, right: 16),
       child: markdownNode
     )
 
@@ -220,25 +181,18 @@ struct FacebookPost {
       content: """
         # Expandable Demo
 
-        # Excited to share my latest project! 🚀
+        ## Headings
+        ### Subheading Level 3
 
-        I've been working on integrating **MarkdownUI** with **Texture/AsyncDisplayKit** and the results are amazing!
+        ---
 
-        ## Key Features:
-        - ✅ Dynamic height calculation
-        - ✅ Smooth expand/collapse animations
-        - ✅ Off-main-thread rendering
-        - ✅ Full markdown support
+        ## Paragraphs & Inline Styles
+        This is a long paragraph with **bold**, _italic_, `code`, and a [link](https://example.com) that should be truncated in collapsed mode. Further text to ensure multiple lines for truncation, including another [link](https://apple.com) and more inline styles like ~~strikethrough~~, superscript^TM^, and subscript_{note}.
 
-        Check it out and let me know what you think! 👇
-        ## Table
-            | Feature | Supported |
-            |:-------:|:---------:|
-            | Bold    | Yes       |
-            | Italic  | Yes       |
-            | Code    | Yes       |
-            | Links   | Yes       |
-        
+        *Emphasis* and **Strong**, `inline code`, and automatic URLs: https://swift.org.
+
+        Superscript: E = mc^2^, and subscript: H_{2}O molecule.
+
         ## Lists
         - Item one with **bold** and `code`
         - Item two with a [link](https://developer.apple.com)
@@ -252,7 +206,28 @@ struct FacebookPost {
         - [x] Task checked item with ~~strikethrough~~
 
         > Blockquote: "Simplicity is the ultimate sophistication." — Leonardo da Vinci
-        
+
+        ## Code Block
+        ```swift
+        struct Greeter {
+            func greet(name: String) -> String {
+                "Hello, Jason!"
+            }
+        }
+        ```
+
+        ## Table
+        | Feature | Supported |
+        |:-------:|:---------:|
+        | Bold    | Yes       |
+        | Italic  | Yes       |
+        | Code    | Yes       |
+        | Links   | Yes       |
+
+        ## Images
+        ![Swift Logo](https://swift.org/assets/images/swift.svg)
+
+        Final paragraph to ensure multiple lines for truncation, including another [link](https://apple.com) and more inline styles like ~~strikethrough~~, superscript^test^, and subscript_{H2O}.
         """
     )
   ]
